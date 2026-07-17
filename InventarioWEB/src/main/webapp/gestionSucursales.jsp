@@ -28,7 +28,7 @@
     </div>
 
     <br/>
-    <a href="jsp/nuevaSucursal.jsp"><button>Nueva Sucursal</button></a>
+    <a href="nuevaSucursal.jsp"><button>Nueva Sucursal</button></a>
     <br/><br/>
 
     <table id="tablaSucursales" border="1" cellpadding="8" cellspacing="0">

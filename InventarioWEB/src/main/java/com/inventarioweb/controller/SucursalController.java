@@ -38,7 +38,8 @@ public class SucursalController extends HttpServlet {
 				buscarPorNombreAjax(request,response);
 				break;
 			default:
-				response.sendRedirect("jsp/gestionSucursales.jsp");
+			    listar(request, response);
+			    break;
 		}
 	}
 
@@ -60,7 +61,7 @@ public class SucursalController extends HttpServlet {
 		try {
 			List<Sucursal> lista = sucursalBL.listar();
 			request.setAttribute("listaSucursales", lista);
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/gestionSucursales.jsp");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/gestionSucursales.jsp");
             rd.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,7 +74,7 @@ public class SucursalController extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             Sucursal sucursal = sucursalBL.buscarPorId(id);
             request.setAttribute("sucursal", sucursal);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/actualizarSucursal.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/actualizarSucursal.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();

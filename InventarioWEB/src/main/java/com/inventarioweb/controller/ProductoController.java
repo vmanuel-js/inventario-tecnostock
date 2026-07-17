@@ -33,7 +33,8 @@ public class ProductoController extends HttpServlet {
                 formularioRegistrar(request, response);
                 break;
             default:
-                response.sendRedirect("jsp/nuevoProducto.jsp");
+                formularioRegistrar(request, response);
+                break;
         }
     }
 
@@ -53,7 +54,7 @@ public class ProductoController extends HttpServlet {
         try {
             List<Categoria> categorias = categoriaBL.listarCategorias();
             request.setAttribute("listaCategorias", categorias);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/nuevoProducto.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/nuevoProducto.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();

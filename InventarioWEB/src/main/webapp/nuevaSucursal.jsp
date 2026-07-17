@@ -7,10 +7,10 @@
 </head>
 <body>
     <h1>Nueva Sucursal</h1>
-    <a href="../sucursal?opcion=listar">Volver a Gestión de Sucursales</a>
+    <a href="./sucursal?opcion=listar">Volver a Gestión de Sucursales</a>
     <hr/>
 
-    <form action="../sucursal" method="POST">
+    <form action="sucursal" method="POST">
         <input type="hidden" name="opcion" value="registrar"/>
 
         <div style="padding: 8px 0px;">
@@ -36,7 +36,7 @@
         <div style="padding: 12px 0px;">
             <button type="submit">Guardar</button>
             &nbsp;
-            <a href="../sucursal?opcion=listar"><button type="button">Cancelar</button></a>
+            <a href="./sucursal?opcion=listar"><button type="button">Cancelar</button></a>
         </div>
     </form>
 </body>

@@ -37,6 +37,9 @@ public class SucursalController extends HttpServlet {
 			case "buscarPorNombre":
 				buscarPorNombreAjax(request,response);
 				break;
+			case "buscarPorId":
+			    buscarPorIdAjax(request, response);
+			    break;
 			default:
 			    listar(request, response);
 			    break;
@@ -144,6 +147,34 @@ public class SucursalController extends HttpServlet {
             }
             json.append("]");
             response.getWriter().write(json.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatus(500);
+        }
+    }
+    
+    private void buscarPorIdAjax(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            Sucursal s = sucursalBL.buscarPorId(id);
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+
+            if (s == null) {
+                response.getWriter().write("[]");
+                return;
+            }
+
+            String json = "[{" +
+                "\"idSucursal\":" + s.getIdSucursal() + "," +
+                "\"nombre\":\"" + s.getNombre() + "\"," +
+                "\"direccion\":\"" + s.getDireccion() + "\"," +
+                "\"telefono\":\"" + s.getTelefono() + "\"," +
+                "\"estado\":\"" + s.getEstado() + "\"" +
+            "}]";
+            response.getWriter().write(json);
         } catch (Exception e) {
             e.printStackTrace();
             response.setStatus(500);

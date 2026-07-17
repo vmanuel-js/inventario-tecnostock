@@ -26,6 +26,11 @@
         <button onclick="buscar()">Buscar</button>
         <button onclick="verTodos()">Ver todos</button>
     </div>
+	<form>
+	    <label>Buscar por código:</label>
+	    <input type="number" id="txtCodigo" placeholder="Ingresa el ID..."/>
+	    <button type="button" onclick="buscarPorCodigo()">Buscar por código</button>
+	</form>
 
     <br/>
     <a href="nuevaSucursal.jsp"><button>Nueva Sucursal</button></a>
@@ -106,6 +111,39 @@
         function verTodos() {
             document.getElementById("txtNombre").value = "";
             window.location.href = "sucursal?opcion=listar";
+        }
+        
+        function buscarPorCodigo() {
+            var id = document.getElementById("txtCodigo").value;
+            if (!id) return;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "sucursal?opcion=buscarPorId&id=" + id, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    var tbody = document.getElementById("cuerpoTabla");
+                    tbody.innerHTML = "";
+                    if (!data || data.length === 0) {
+                        tbody.innerHTML = "<tr><td colspan='6' style='text-align:center;'>No se encontró sucursal con ese código.</td></tr>";
+                        return;
+                    }
+                    data.forEach(function(s) {
+                        tbody.innerHTML += "<tr>" +
+                            "<td>" + s.idSucursal + "</td>" +
+                            "<td>" + s.nombre + "</td>" +
+                            "<td>" + s.direccion + "</td>" +
+                            "<td>" + s.telefono + "</td>" +
+                            "<td>" + s.estado + "</td>" +
+                            "<td>" +
+                                "<a href='sucursal?opcion=formularioActualizar&id=" + s.idSucursal + "'>Editar</a>" +
+                                " | " +
+                                "<a href='sucursal?opcion=eliminar&id=" + s.idSucursal + "' onclick=\"return confirm('¿Eliminar?')\">Eliminar</a>" +
+                            "</td>" +
+                        "</tr>";
+                    });
+                }
+            };
+            xhr.send();
         }
     </script>
 </body>

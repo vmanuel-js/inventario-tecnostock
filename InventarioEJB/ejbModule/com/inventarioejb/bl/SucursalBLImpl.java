@@ -2,12 +2,14 @@ package com.inventarioejb.bl;
 
 import java.sql.SQLException;
 import java.util.List;
+
 import com.inventarioejb.dao.SucursalDAO;
+import com.inventarioejb.dao.SucursalDAOImpl;
 import com.inventarioejb.entity.Sucursal;
 
 public class SucursalBLImpl implements ISucursalBL {
 
-    private SucursalDAO dao = new SucursalDAO();
+    private SucursalDAO dao = new SucursalDAOImpl();
 
     @Override
     public void registrar(String nombre, String direccion, String telefono, String estado) throws SQLException {

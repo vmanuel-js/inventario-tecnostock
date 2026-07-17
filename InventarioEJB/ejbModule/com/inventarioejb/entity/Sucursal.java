@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @NamedQueries({
 	@NamedQuery(
 			name="Sucursal.listar",
-			query="SELECT s FROM Sucursal e"
+			query="SELECT s FROM Sucursal s"
 			),
 	@NamedQuery(
 			name="Sucursal.buscarPorNombre",
@@ -18,7 +18,7 @@ import jakarta.persistence.*;
 			),
 	@NamedQuery(
 			name="Sucursal.actualizar",
-			query="UPDATE Sucursal s SET s.nombre = :nombre, s.direccion = :direccion, s.telefono = :telefono, s.estado = :estado, WHERE s.idSucursal = :id"
+			query="UPDATE Sucursal s SET s.nombre = :nombre, s.direccion = :direccion, s.telefono = :telefono, s.estado = :estado WHERE s.idSucursal = :id"
 			),
 	@NamedQuery(
 			name="Sucursal.eliminar",
